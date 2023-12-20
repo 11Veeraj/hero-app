@@ -65,6 +65,7 @@ exports.myOrders = async (req, res, next) => {
         const seller = req.session.seller;
         
         const orderedProducts = await orderProductService.findOrdersBySeller(seller);
+        await Promise.all(orderedProducts.map((order) => order.populate(['buyer', 'product'])))
 
         res.render('sellerOrders', { session: req.session, orderedProducts });
     } catch (err) {

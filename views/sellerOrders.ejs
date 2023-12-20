@@ -27,30 +27,30 @@
       </tr>
     </thead>
     <tbody>
-        <% for (let i = 0; i <= orderedProducts.length; i++) { %>
+        <% orderedProducts.forEach(product => { %>
       <tr>
         <td>
           <div class="d-flex align-items-center">
             
             <div class="ms-3">
-              <p class="fw-bold mb-1"><%= orderedProducts[i].orderId %></p>
+              <p class="fw-bold mb-1"><%= product.orderId %></p>
             </div>
           </div>
         </td>
         <td>
-          <p class="fw-normal mb-1"><%= oderedProducts[i].buyer %></p>
+          <p class="fw-normal mb-1"><%= product.buyer.fullName %></p>
         </td>
         <td>
-            <p class="fw-normal mb-1"><%= oderedProducts[i].product %></p>
+            <p class="fw-normal mb-1"><%= product.product.name %></p>
         </td>
         <td>
-            <p class="fw-normal mb-1"><%= oderedProducts[i].quantity %></p>
+            <p class="fw-normal mb-1"><%= product.quantity %></p>
         </td>
         <td>
-            <p class="fw-normal mb-1"><%= oderedProducts[i].orderedAt %></p>
+            <p class="fw-normal mb-1"><%= product.orderedAt %></p>
         </td>
         <td>
-          <span class="badge badge-success rounded-pill d-inline"><%= oderedProducts[i].status %></span>
+          <span class="badge badge-success rounded-pill d-inline"><%= product.status %></span>
         </td>
         <td>
           <button type="button" class="btn btn-link btn-sm btn-rounded">
@@ -58,6 +58,6 @@
           </button>
         </td>
       </tr>
-      <% } %>
+      <% }); %>
     </tbody>
   </table>
