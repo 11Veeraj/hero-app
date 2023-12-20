@@ -31,7 +31,7 @@ app.use(populateSession());
 
 app.set('layout', './layouts/main');
 app.set('view engine', 'ejs');
-
+app.set("layout checkPackage", false);
 // routers
 app.use(require('./routers/default.router').defaultRouter);
 app.use(require('./routers/auth.router').authRouter);

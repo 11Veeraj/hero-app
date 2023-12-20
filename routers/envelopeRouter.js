@@ -15,5 +15,6 @@ router.get('/contact', envelopeController.contact);
 router.get('/elements', envelopeController.elements);
 router.get('/list', envelopeController.productList);
 router.get('/seller-dashboard', envelopeController.sellerDashboard);
+router.get('/checkPackage', envelopeController.checkPackage);
 
 module.exports = router;

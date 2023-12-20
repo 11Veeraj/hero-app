@@ -27,3 +27,22 @@ exports.findOrdersBySeller = async (seller) => {
     const orders = await OrderProductModel.find({ seller: seller }).sort({ orderedAt: 1 });
     return orders;
 };
+
+exports.findProductFromOrder = async (orderId, productId) => {
+    const orderProduct = await OrderProductModel.findOne({ orderId, product: productId });
+    await orderProduct.populate(['product', 'buyer']);
+    await orderProduct.product.populate('seller');
+    return orderProduct;
+}
+
+
+exports.findProductFromOrder = async (orderId, productId) => {
+    const orderProduct = await OrderProductModel.findOne({ orderId, product: productId });
+    await orderProduct.populate(['product', 'buyer']);
+    await orderProduct.product.populate('seller');
+    return orderProduct;
+}
+exports.findOrdersBySeller = async (seller) => {
+    const orders = await OrderProductModel.find({ seller: seller }).sort({ orderedAt: 1 });
+    return orders;
+};
