@@ -186,3 +186,12 @@ exports.sellerDashboard = async (req, res) => {
         res.status(500).send({ message: error.message || 'Error Occured' });
     }
 };
+
+exports.checkPackage = async (req, res) => {
+    try {
+        res.render('checkPackage', { title: 'Parcel Checker', session: req.session ,layout: 'checkPackage'});
+    } catch (error) {
+        res.status(500).send({ message: error.message || 'Error Occured' });
+    }
+};
+
