@@ -215,6 +215,7 @@
                     <th>Quantity</th>
                     <th>Order Date</th>
                     <th>Order Status</th>
+                    <th>Action</th>
                 </thead>
                 <tbody>
                     <% if (orderedProducts) { %>
@@ -231,6 +232,9 @@
                             </td>
                             <td>
                                 <%= prod.status %>
+                            </td>
+                            <td>
+                                <a href="/generate-pdf?orderId=<%= orderId %>&productId=<%= prod.product._id %>" target="_blank" role="btn" class="primary-btn">Download PDF</a>
                             </td>
                         </tr>
                         <% }) %>

@@ -22,3 +22,11 @@ exports.findOrderById = async (orderId) => {
     const orderedProducts = await OrderProductModel.find({ orderId });
     return orderedProducts;
 };
+
+
+exports.findProductFromOrder = async (orderId, productId) => {
+    const orderProduct = await OrderProductModel.findOne({ orderId, product: productId });
+    await orderProduct.populate(['product', 'buyer']);
+    await orderProduct.product.populate('seller');
+    return orderProduct;
+}

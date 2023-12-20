@@ -2,7 +2,9 @@ const ejs = require('ejs');
 const puppeteer = require('puppeteer');
 
 exports.toPdfBuffer = async (filepath, additionalData = {}) => {
-    const htmlContent = await ejs.renderFile(filepath, additionalData);
+    const htmlContent = await ejs.renderFile(filepath, additionalData, {
+        views: '../../views',
+    });
 
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
