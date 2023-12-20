@@ -22,3 +22,8 @@ exports.findOrderById = async (orderId) => {
     const orderedProducts = await OrderProductModel.find({ orderId });
     return orderedProducts;
 };
+
+exports.findOrdersBySeller = async (seller) => {
+    const orders = await OrderProductModel.find({ seller: seller }).sort({ orderedAt: 1 });
+    return orders;
+};

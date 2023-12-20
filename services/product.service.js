@@ -62,3 +62,8 @@ exports.mostBoughtProduct = async() => {
        return {productas: await productas};
 }
 
+exports.findBySeller = async (seller) => {
+    const products = await ProductModel.find({ seller });
+    await Promise.all(products.map(async (product) => await product.populate('tags')));
+    return products;
+};

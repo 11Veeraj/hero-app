@@ -4,7 +4,7 @@
         <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
             <div class="col-first">
                 <h1>My Orders!!</h1>
-                <p>The seller can see all the orders he has received here!!</p>
+                <p>Heyy <%= session.seller.firstName%>, here's an overview of your received orders!</p>
                 <nav class="d-flex align-items-center">
                     <a href="index.ejs">Home<span class="lnr lnr-arrow-right"></span></a>
                     <a href="sellerOrders.ejs">My Orders</a>
@@ -14,22 +14,50 @@
     </div>
 </section>
 
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+<table class="table align-middle mb-0 bg-white">
+    <thead class="bg-light">
+      <tr>
+        <th>Order Id</th>
+        <th>Buyer</th>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Ordered At</th>
+        <th>Status</th>
+        <th>Update Status</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% for (let i = 0; i <= orderedProducts.length; i++) { %>
+      <tr>
+        <td>
+          <div class="d-flex align-items-center">
+            
+            <div class="ms-3">
+              <p class="fw-bold mb-1"><%= orderedProducts[i].orderId %></p>
+            </div>
+          </div>
+        </td>
+        <td>
+          <p class="fw-normal mb-1"><%= oderedProducts[i].buyer %></p>
+        </td>
+        <td>
+            <p class="fw-normal mb-1"><%= oderedProducts[i].product %></p>
+        </td>
+        <td>
+            <p class="fw-normal mb-1"><%= oderedProducts[i].quantity %></p>
+        </td>
+        <td>
+            <p class="fw-normal mb-1"><%= oderedProducts[i].orderedAt %></p>
+        </td>
+        <td>
+          <span class="badge badge-success rounded-pill d-inline"><%= oderedProducts[i].status %></span>
+        </td>
+        <td>
+          <button type="button" class="btn btn-link btn-sm btn-rounded">
+            Update
+          </button>
+        </td>
+      </tr>
+      <% } %>
+    </tbody>
+  </table>

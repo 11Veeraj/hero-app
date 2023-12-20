@@ -2,6 +2,8 @@ const { ZodError } = require('zod');
 const { EditSellerSchema } = require('./schemas/auth.schema');
 const sellerService = require('../services/seller.service');
 const { InvalidLoginException, ExistsException } = require('../exceptions');
+const productService = require('../services/product.service');
+const orderProductService = require('../services/order-product.service');
 
 exports.editSellerProfile = async (req, res, next) => {
     try {
@@ -42,7 +44,9 @@ exports.editSellerProfile = async (req, res, next) => {
 
 exports.myAllProducts = async (req, res, next) => {
     try {
-        res.render('myShop', { session: req.session });
+        const seller = req.session.seller;
+        const products = await productService.findBySeller(seller);
+        res.render('myShop', { session: req.session, products });
     } catch (err) {
         next(err);
     }
@@ -58,7 +62,11 @@ exports.addProduct = async (req, res, next) => {
 
 exports.myOrders = async (req, res, next) => {
     try {
-        res.render('sellerOrders', { session: req.session });
+        const seller = req.session.seller;
+        
+        const orderedProducts = await orderProductService.findOrdersBySeller(seller);
+
+        res.render('sellerOrders', { session: req.session, orderedProducts });
     } catch (err) {
         next(err);
     }
