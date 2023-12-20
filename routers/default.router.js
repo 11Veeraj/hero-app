@@ -1,15 +1,11 @@
 const { Router } = require('express');
+const { ensureAuth } = require('../middlewares/auth.middleware');
 const defaultController = require('../controllers/default.controller');
+const trackingController = require('../controllers/tracking.controller');
 
 const router = Router();
 
 router.get('/', defaultController.home);
 router.get('/map', (req, res, next) => res.render('sample', {session: req.session }))
-router.get('/tracking', (req, res, next) => {
-    try {
-        res.render('tracking', { session: req.session  });
-    } catch (err) {
-        next(err);
-    }
-})
+router.get('/tracking', ensureAuth(), trackingController.track)
 exports.defaultRouter = router;
