@@ -63,3 +63,11 @@ exports.myOrders = async (req, res, next) => {
         next(err);
     }
 };
+
+exports.nearestDNK = async (req, res, next) => {
+    try {
+        res.render('dnk-nearest', { session: req.session });
+    } catch (err) {
+        next(err);
+    }
+};

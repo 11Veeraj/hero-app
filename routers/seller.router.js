@@ -17,4 +17,7 @@ router.get('/product-list', ensureAuth(), ensureRole('SELLER'), sellerController
 
 router.get('/seller/myOrders', ensureAuth(), ensureRole('SELLER'), sellerController.myOrders);
 
+router.get('/dnk/nearest', ensureAuth(), ensureRole('SELLER'), sellerController.nearestDNK);
+
+
 exports.sellerRouter = router;
