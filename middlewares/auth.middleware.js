@@ -45,7 +45,9 @@ exports.ensureRole = (...allowedRoles) => {
             if (allowedRoles.includes(presentRole)) {
                 next();
             } else {
-                throw new Unauthorized(`Role '${presentRole}' not allowed to view that resource`);
+                alert(`${presentRole} is not allowed to access that page.`);
+                res.redirect('/');
+                // throw new Unauthorized(`Role '${presentRole}' not allowed to view that resource`);
             }
         } catch (err) {
             next(err);
